@@ -35,7 +35,6 @@ var setup = function(callback) {
         return console.log(err);
       }
       console.log(filename + " saved!");
-      callback();
     });
   })
 
@@ -57,15 +56,14 @@ var setup = function(callback) {
       if(err) {
         return console.log(err);
       }
-      console.log(filename + " saved!");
-      callback();
+      // console.log(filename + " saved!");
     });
     // create a file that will be *Modified* in our test
     fs.writeFile(filename, "Hi!", function(err) {
       if(err) {
         return console.log(err);
       }
-      console.log(filename + " saved!");
+      // console.log(filename + " saved!");
       callback();
     });
   });
