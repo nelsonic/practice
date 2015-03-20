@@ -1,0 +1,32 @@
+{
+  "name": "other",
+  "version": "1.0.0",
+  "description": "Other experiments in code for fun and practice.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tape"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nelsonic/other.git"
+  },
+  "keywords": [
+    "in",
+    "other",
+    "news"
+  ],
+  "author": "@nelsonic <contact.nelsonic@gmail.com> (https://github.com/nelsonic)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nelsonic/other/issues"
+  },
+  "homepage": "https://github.com/nelsonic/other",
+  "devDependencies": {
+    "dirs": "^0.1.2",
+    "mkdirp": "^0.5.0",
+    "rimraf": "^2.3.2"
+  }
+}
