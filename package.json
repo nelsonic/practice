@@ -1,6 +1,6 @@
 {
   "name": "other",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Other experiments in code for fun and practice.",
   "main": "index.js",
   "directories": {
@@ -26,6 +26,7 @@
   "homepage": "https://github.com/nelsonic/other",
   "devDependencies": {
     "dirs": "^0.1.2",
+    "is-directory": "^0.2.3",
     "mkdirp": "^0.5.0",
     "rimraf": "^2.3.2"
   }
