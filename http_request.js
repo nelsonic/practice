@@ -8,18 +8,18 @@ function request(options, callback) {
     res.setEncoding('utf8');
     var resStr = '';
     res.on('data', function (chunk) {
-      // console.log(chunk);
       resStr += chunk;
     }).on('end', function () {
-      // console.log(resStr);
-      // var response = JSON.parse(resStr);
-      // if(options.method === "DELETE" && response.found === true) {
-      //   response.deleted = true;
-      // } else {
-      //   // do nothing ... istanbul!
-      // }
-      if(!called) {
-        called = true;
+      if(options.headers['Content-Type'] === 'application/json') {
+        var response = JSON.parse(resStr);
+        if(options.method === "DELETE" && response.found === true) {
+          response.deleted = true;
+        } else {
+          // do nothing ... istanbul!
+        }
+        callback(response);
+      }
+      else {
         callback(resStr); // return response as object
       }
     })
@@ -37,14 +37,14 @@ function options(record, method) {
     path: '/',
     method: 'GET',
     headers: {
-      // 'transfer-encoding':''
+      'Content-Type': 'application/json'
     }
   };
 }
 // https://un:pw@dogwood-8420631.eu-west-1.bonsai.io
 var opts = options();
-var username = 'ocweo8gq';
-var password = '6ekcklvyca0xp2m7'
+var username = 'username';
+var password = 'passsword'
 var basic = 'Basic ' +  (new Buffer(username + ':' + password, 'utf8')).toString('base64');
 // var basic = 'Basic '+username+':'+password
 // opts.headers.auth = basic;
