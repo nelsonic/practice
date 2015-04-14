@@ -43,8 +43,8 @@ function options(record, method) {
 }
 // https://un:pw@dogwood-8420631.eu-west-1.bonsai.io
 var opts = options();
-var username = 'o';
-var password = '6'
+var username = 'ocweo8gq';
+var password = '6ekcklvyca0xp2m7'
 var basic = 'Basic ' +  (new Buffer(username + ':' + password, 'utf8')).toString('base64');
 // var basic = 'Basic '+username+':'+password
 // opts.headers.auth = basic;
