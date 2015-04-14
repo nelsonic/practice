@@ -1,23 +1,27 @@
-var http = require('http');
+var http = require('https');
 
 function request(options, callback) {
+  var called = false;
   var resStr = '';
   // Set up the request
   var req = http.request(options, function(res) {
     res.setEncoding('utf8');
     var resStr = '';
     res.on('data', function (chunk) {
-      console.log(chunk);
+      // console.log(chunk);
       resStr += chunk;
     }).on('end', function () {
-      console.log(resStr);
+      // console.log(resStr);
       // var response = JSON.parse(resStr);
       // if(options.method === "DELETE" && response.found === true) {
       //   response.deleted = true;
       // } else {
       //   // do nothing ... istanbul!
       // }
-      callback(resStr); // return response as object
+      if(!called) {
+        called = true;
+        callback(resStr); // return response as object
+      }
     })
   }) // got a better idea? submit an issue! (lets do it!)
   req.on('error', function(e) {
@@ -29,7 +33,7 @@ function request(options, callback) {
 function options(record, method) {
   return {
     host: 'dogwood-8420631.eu-west-1.bonsai.io',
-    port: 80,
+    port: 443,
     path: '/',
     method: 'GET',
     headers: {
@@ -39,8 +43,8 @@ function options(record, method) {
 }
 // https://un:pw@dogwood-8420631.eu-west-1.bonsai.io
 var opts = options();
-var username = 'un';
-var password = 'pw'
+var username = 'o';
+var password = '6'
 var basic = 'Basic ' +  (new Buffer(username + ':' + password, 'utf8')).toString('base64');
 // var basic = 'Basic '+username+':'+password
 // opts.headers.auth = basic;
