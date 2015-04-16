@@ -15,20 +15,27 @@ var transporter = nodemailer.createTransport({
 // NB! No need to recreate the transporter object. You can use
 // the same transporter object for all e-mails
 
-// setup e-mail data with unicode symbols
-var mailOptions = {
-    from: '#dwyl do what you love! <welcome.to.dwyl@gmail.com>', // sender address
-    to: 'dwyl.smith@gmail.com', // list of receivers
-    subject: 'Welcome to dwyl!', // Subject line
-    text: textonly, // plaintext body
-    html: template
-};
+var email = function(person, callback){
+    var mailOptions = {
+        from: '#dwyl do what you love! <welcome.to.dwyl@gmail.com>', // sender address
+        to: person.email, // list of receivers
+        subject: 'Welcome to dwyl!', // Subject line
+        text: textonly, // plaintext body
+        html: template
+    };
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, function(error, info){
+        // console.log(error, info);
+        callback(error, info)
+    });
 
-// send mail with defined transport object
-transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-        console.log(error);
-    }else{
-        console.log('Message sent: ' + info.response);
-    }
-});
+}
+
+var person = {
+    email : 'dwyl.smith@gmail.com',
+    name  : 'FirstName'
+}
+
+email(person, function(error,info){
+    console.log(info);
+})
