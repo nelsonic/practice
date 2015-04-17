@@ -17,7 +17,7 @@ var transporter = nodemailer.createTransport({
 
 var email = function(person, callback){
     var mailOptions = {
-        from: '#dwyl do what you love! <welcome.to.dwyl@gmail.com>', // sender address
+        from: 'hello@dwyl.io <hello@dwyl.io>', // sender address
         to: person.email, // list of receivers
         subject: 'Welcome to dwyl!', // Subject line
         text: textonly, // plaintext body
@@ -31,11 +31,11 @@ var email = function(person, callback){
 
 }
 
-var person = {
+var recipient = {
     email : 'dwyl.smith@gmail.com',
     name  : 'FirstName'
 }
 
 email(person, function(error,info){
-    console.log(info);
+    console.log(error, info);
 })
