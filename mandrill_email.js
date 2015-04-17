@@ -1,77 +1,33 @@
 var mandrill    = require('mandrill-api');
+var fs         = require('fs');
+var template   = fs.readFileSync('./email_html_template.html', 'utf8');
+var textonly   = fs.readFileSync('./email_text_template.txt', 'utf8');
+
 mandrill_client = new mandrill.Mandrill(process.env.MANDRILL_APIKEY);
+
 var message = {
-    "html": "<p>Example HTML content</p>",
-    "text": "Example text content",
-    "subject": "example subject",
+    "html": template,
+    "text": textonly,
+    "subject": "Welcome to DWYL",
     "from_email": "hello@dwyl.io",
     "from_name": "Hello from DWYL",
     "to": [{
-            "email": "dwyl.test@gmail.com",
-            "name": "DWYLer",
+            "email": "dwyl.smith@gmail.com",
+            // "name": "FirstName", // not using this for now.
             "type": "to"
         }],
     "headers": {
         "Reply-To": "hello@dwyl.io"
     },
     "important": false,
-    "track_opens": null,
-    "track_clicks": null,
-    "auto_text": null,
-    "auto_html": null,
-    "inline_css": null,
-    "url_strip_qs": null,
-    "preserve_recipients": null,
-    "view_content_link": null,
-    // "bcc_address": "message.bcc_address@example.com",
-    "tracking_domain": null,
-    "signing_domain": null,
-    "return_path_domain": null,
-    "merge": true,
-    "merge_language": "mailchimp",
-    // "global_merge_vars": [{
-    //         "name": "merge1",
-    //         "content": "merge1 content"
-    //     }],
-    // "merge_vars": [{
-    //         "rcpt": "recipient.email@example.com",
-    //         "vars": [{
-    //                 "name": "merge2",
-    //                 "content": "merge2 content"
-    //             }]
-    //     }],
+    "track_opens": true,
+    "track_clicks": true,
     "tags": [
-        "account-registration"
+        "registration"
     ],
-    // "subaccount": "customer-123",
-    // "google_analytics_domains": [
-    //     "example.com"
-    // ],
-    // "google_analytics_campaign": "message.from_email@example.com",
-    // "metadata": {
-    //     "website": "www.example.com"
-    // },
-    // "recipient_metadata": [{
-    //         "rcpt": "recipient.email@example.com",
-    //         "values": {
-    //             "user_id": 123456
-    //         }
-    //     }],
-    // "attachments": [{
-    //         "type": "text/plain",
-    //         "name": "myfile.txt",
-    //         "content": "ZXhhbXBsZSBmaWxl"
-    //     }],
-    // "images": [{
-    //         "type": "image/png",
-    //         "name": "IMAGECID",
-    //         "content": "ZXhhbXBsZSBmaWxl"
-    //     }]
 };
-var async = false;
-var ip_pool = "Main Pool";
 
-mandrill_client.messages.send({"message": message, "async": async, "ip_pool": ip_pool}, function(result) {
+mandrill_client.messages.send({"message": message}, function(result) {
     console.log(result);
 
 }, function(e) {
