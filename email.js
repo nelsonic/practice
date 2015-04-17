@@ -36,6 +36,10 @@ var recipient = {
     name  : 'FirstName'
 }
 
+var person = {
+    email: 'nelson.k.correia@gmail.com'
+}
+
 email(person, function(error,info){
     console.log(error, info);
 })

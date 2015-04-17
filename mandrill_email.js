@@ -29,50 +29,49 @@ var message = {
     "return_path_domain": null,
     "merge": true,
     "merge_language": "mailchimp",
-    "global_merge_vars": [{
-            "name": "merge1",
-            "content": "merge1 content"
-        }],
-    "merge_vars": [{
-            "rcpt": "recipient.email@example.com",
-            "vars": [{
-                    "name": "merge2",
-                    "content": "merge2 content"
-                }]
-        }],
+    // "global_merge_vars": [{
+    //         "name": "merge1",
+    //         "content": "merge1 content"
+    //     }],
+    // "merge_vars": [{
+    //         "rcpt": "recipient.email@example.com",
+    //         "vars": [{
+    //                 "name": "merge2",
+    //                 "content": "merge2 content"
+    //             }]
+    //     }],
     "tags": [
-        "password-resets"
+        "account-registration"
     ],
-    "subaccount": "customer-123",
-    "google_analytics_domains": [
-        "example.com"
-    ],
-    "google_analytics_campaign": "message.from_email@example.com",
-    "metadata": {
-        "website": "www.example.com"
-    },
-    "recipient_metadata": [{
-            "rcpt": "recipient.email@example.com",
-            "values": {
-                "user_id": 123456
-            }
-        }],
-    "attachments": [{
-            "type": "text/plain",
-            "name": "myfile.txt",
-            "content": "ZXhhbXBsZSBmaWxl"
-        }],
-    "images": [{
-            "type": "image/png",
-            "name": "IMAGECID",
-            "content": "ZXhhbXBsZSBmaWxl"
-        }]
+    // "subaccount": "customer-123",
+    // "google_analytics_domains": [
+    //     "example.com"
+    // ],
+    // "google_analytics_campaign": "message.from_email@example.com",
+    // "metadata": {
+    //     "website": "www.example.com"
+    // },
+    // "recipient_metadata": [{
+    //         "rcpt": "recipient.email@example.com",
+    //         "values": {
+    //             "user_id": 123456
+    //         }
+    //     }],
+    // "attachments": [{
+    //         "type": "text/plain",
+    //         "name": "myfile.txt",
+    //         "content": "ZXhhbXBsZSBmaWxl"
+    //     }],
+    // "images": [{
+    //         "type": "image/png",
+    //         "name": "IMAGECID",
+    //         "content": "ZXhhbXBsZSBmaWxl"
+    //     }]
 };
 var async = false;
 var ip_pool = "Main Pool";
-var send_at = new Date();
 
-mandrill_client.messages.send({"message": message, "async": async, "ip_pool": ip_pool, "send_at": send_at}, function(result) {
+mandrill_client.messages.send({"message": message, "async": async, "ip_pool": ip_pool}, function(result) {
     console.log(result);
 
 }, function(e) {
