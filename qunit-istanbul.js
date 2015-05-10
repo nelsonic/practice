@@ -26,7 +26,7 @@ order([
 ], function (err, result) {
   // result now equals 'done'
   check();
-  console.log(err, result);
+  callback(err, result);
 });
 
 var check = function(){
