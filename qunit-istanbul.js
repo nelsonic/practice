@@ -1,7 +1,6 @@
 var order    = require('ordenado');
-var QUnit    = require('qunit');        // require QUnit and all its friends
-// QUnit.setup({ coverage: true });          //
-// require('qunit-tap')(QUnit, console.log); // tell qunit-tap to use console.log for test output
+var QUnit    = require('qunitjs');        // require QUnit and all its friends
+require('qunit-tap')(QUnit, console.log); // tell qunit-tap to use console.log for test output
 
 var actual   = [];
 var expected = [ 'one', 'two', 'three' ];
@@ -38,6 +37,6 @@ var check = function(){
     }
   });
   // console.log(actual);
-}
+};
 
-// QUnit.load(); // run our test suite.
+QUnit.load(); // run our test suite.
