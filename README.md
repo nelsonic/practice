@@ -20,7 +20,6 @@ Issue noted: https://github.com/jonschlinkert/dirs/issues/1
 
 Which QUnit Node.js Module should we use...?
 
-+ The official one: https://github.com/jquery/qunit
-+ Or the one that supports istanbul: https://github.com/kof/node-qunit#via-api
-
-
+> The official qunitjs module (maintained by the jquery foundation): https://github.com/jquery/qunit 
+works with istanbul. simply run: `istanbul cover your-test-filename.js`
+> I'm a *little* worried that the 1.18 release has only 84% coverage ... it doesn't make any sense.

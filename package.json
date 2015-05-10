@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "tape",
-    "coverage":"./node_modules/.bin/istanbul cover qunit-istanbul.js"
+    "coverage":"istanbul cover qunit-istanbul.js"
   },
   "repository": {
     "type": "git",
