@@ -1,5 +1,3 @@
 var find = require('find');
-
-find.file(/hi\.js$/, function(file) {
-  console.log(files.length);
-});
+var file = find.fileSync(/hi\.js$/, './');
+console.log(file);
