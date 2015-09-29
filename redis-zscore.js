@@ -1,11 +1,12 @@
-var redis_config =  {
-  port: 6379,
-  host: '127.0.0.1',
-  auth: '' // no password on localhost or travis
-}
-var redis = require('redis');
-var redisClient = redis.createClient(redis_config.port, redis_config.host);
-redisClient.auth(redis_config.auth);
+// var redis_config =  {
+//   port: 6379,
+//   host: '127.0.0.1',
+//   auth: '' // no password on localhost or travis
+// }
+// var redis = require('redis');
+// var redisClient = redis.createClient(redis_config.port, redis_config.host);
+// redisClient.auth(redis_config.auth);
+var redisClient = require('redis-connection')();
 
 redisClient.set('redis', 'LOCAL');
 redisClient.get('redis', function (err, reply) {
