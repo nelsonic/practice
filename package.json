@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "ansi-styles": "^2.1.0",
+    "aws-sdk": "^2.2.32",
     "chalk": "^1.0.0",
     "colors": "^1.1.2",
     "curlrequest": "^0.5.2",
