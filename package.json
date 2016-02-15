@@ -11,7 +11,7 @@
     "coverage": "istanbul cover qunit-istanbul.js",
     "increment":"node tasks/increment.js",
     "reset":"node tasks/reset.js",
-    "gogo":"npm run increment && npm run increment && npm run reset && npm run increment"
+    "gogo":"npm run increment && npm run increment && npm run increment && npm run reset"
   },
   "repository": {
     "type": "git",
