@@ -10,8 +10,12 @@
     "test": "tape",
     "coverage": "istanbul cover qunit-istanbul.js",
     "increment":"node tasks/increment.js",
+    "read":"node tasks/read.js",
     "reset":"node tasks/reset.js",
-    "gogo":"npm run increment && npm run increment && npm run increment && npm run reset"
+    "gogo":"npm run increment && npm run increment && npm run increment && npm run read && npm run reset",
+    "zip":"node tasks/zip.js",
+    "unzip":"node tasks/unzip.js"
+
   },
   "repository": {
     "type": "git",
