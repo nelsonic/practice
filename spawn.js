@@ -1,5 +1,5 @@
 var spawn = require('child_process').spawn,
-    ls    = spawn('npm', ['list', '-g', '-depth', '0'], { stdio: 'inherit' });
+    ls    = spawn('npm', ['run', 'increments'], { stdio: 'inherit' });
 
 // ls.stdout.on('data', function (data) {
 //   console.log('stdout: ' + data);

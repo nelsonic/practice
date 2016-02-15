@@ -1,6 +1,6 @@
 {
   "name": "other",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Other experiments in code for fun and practice.",
   "main": "index.js",
   "directories": {
@@ -8,16 +8,19 @@
   },
   "scripts": {
     "test": "tape",
-    "coverage": "istanbul cover qunit-istanbul.js"
+    "coverage": "istanbul cover qunit-istanbul.js",
+    "increment":"node tasks/increment.js",
+    "reset":"node tasks/reset.js",
+    "gogo":"npm run increment && npm run increment && npm run reset && npm run increment"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/nelsonic/other.git"
   },
   "keywords": [
-    "in",
-    "other",
-    "news"
+    "practice",
+    "makes",
+    "..."
   ],
   "author": "@nelsonic <contact.nelsonic@gmail.com> (https://github.com/nelsonic)",
   "license": "ISC",
