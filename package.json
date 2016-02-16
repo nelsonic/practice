@@ -13,8 +13,10 @@
     "read":"node tasks/read.js",
     "reset":"node tasks/reset.js",
     "gogo":"npm run increment && npm run increment && npm run increment && npm run read && npm run reset",
+    "node_modules": "node tasks/npm_install",
     "zip":"node tasks/zip.js",
-    "unzip":"node tasks/unzip.js"
+    "unzip":"node tasks/unzip.js",
+    "deploy":"npm run node_modules && npm run zip"
 
   },
   "repository": {

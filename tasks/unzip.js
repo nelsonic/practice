@@ -14,15 +14,7 @@ var spawn = require('child_process').spawn;
     if (exists) {
 
       var dir = path.resolve(__dirname + '/../unzipped')
-      zip = spawn('unzip', [file, '-d', dir]);
-
-      zip.stdout.on('data', function(data) {
-          console.log('stdout: ' + data.toString());
-      });
-
-      zip.stderr.on('data', function (data) {
-          console.log('stderr: ' + data);
-      });
+      zip = spawn('unzip', [file, '-d', dir], { stdio: 'inherit' });
 
       zip.on('close', function (code) {
           console.log('>>>',__dirname);

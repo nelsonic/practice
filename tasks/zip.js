@@ -17,19 +17,11 @@ var spawn = require('child_process').spawn;
         console.log('Successfully deleted the old zip.');
     }
 
-    var dir = path.resolve(__dirname)
-    zip = spawn('zip', ['-r', '-j', '-X', file, dir]);
-
-    zip.stdout.on('data', function(data) {
-        console.log('stdout: ' + data.toString());
-    });
-
-    zip.stderr.on('data', function (data) {
-        console.log('stderr: ' + data);
-    });
+    var dir = 'tasks/' // path.resolve(__dirname)
+    zip = spawn('zip', ['-rq', '-J', '-X', file, dir], { stdio: 'inherit' });
 
     zip.on('close', function (code) {
-        console.log('>>>',__dirname);
+        console.log('>>>',dir);
         console.log('Successfully Zipped.');
         // return cb(fs.readFileSync(file), name);
     });
