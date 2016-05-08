@@ -1,6 +1,19 @@
-# other
+# practice makes ...
 
 fun times with code.
+
+## HTTP Referrer
+
+Its *easy* to get the http Referrer ("*the page that sent you to us*")
+on the server. But right now (*for work*) we are building a (*React*)
+Single Page Web Application that loads from S3 (i.e. *No Server*!)
+so we need a way to get the http referred client-side.
+
+A minute of googling revealed:
+https://developer.mozilla.org/en-US/docs/Web/API/Document/referrer
+
+So that's what this experiment attempts to use. see: `/http_referrer`
+
 
 
 ## ES6 => Babel ... ?
