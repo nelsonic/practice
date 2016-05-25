@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>S3 Document Retriever</title>
+    <link rel="shortcut icon" href="https://s3-eu-west-1.amazonaws.com/dwyl/favicon.ico">
+  </head>
+  <body>
+    <h1>Try it!</h1>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+    var url = 'https://numo-search-results.s3.amazonaws.com/ci/1/CCNTFB--YgSNcE8-AALS/tile%3Aarticle.toplist.cities.json'
+    // without JQuery: http://youmightnotneedjquery.com/#json
+    $.getJSON(url, function(data) {
+      console.log(data);
+    });
+    </script>
+  </body>
+</html>
