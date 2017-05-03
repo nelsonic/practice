@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang=”en-GB”>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Register</title>
+  <link rel="shortcut icon" href="https://www.dwyl.io/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+// ==================================== mount function ====================================
+
+const mount = ({model, update, view}, $root) => {
+  // initial state
+  let state = model
+  // signal function takes action and returns callback
+  const signal = action => () => {
+    // update state
+    state = update(state, action)
+    // rerender
+    const $dom = view(signal, state)
+    $root.empty().append($dom)
+  }
+  // initial render
+  const $dom = view(signal, state)
+  $root.empty().append($dom)
+}
+
+// ==================================== the component ====================================
+
+const Inc = 'inc'
+const Dec = 'dec'
+
+const update = (model, action) => {
+  switch(action) {
+    case Inc: return model + 1
+    case Dec: return model - 1
+    default: return model
+  }
+}
+
+const view = (signal, model) => $('<div/>').append(
+  $('<button>+</button>').on('click', signal(Inc)),
+  $('<span>'+model+'</span>'),
+  $('<button>-</button>').on('click', signal(Dec))
+)
+
+// ==================================== init app ====================================
+  
+ mount({model: 0, update, view}, $('#app'))
+  </script>
+</body>
+</html>
