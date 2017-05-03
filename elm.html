@@ -9,8 +9,7 @@
 
 <body>
   <div id="app"></div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script>
+<script>
 // ==================================== mount function ====================================
 
 function mount(muv, $root) {
@@ -26,13 +25,12 @@ function mount(muv, $root) {
       // update state
       state = update(state, action);
       // rerender
-      var $dom = view(signal, state);
-      $root.empty().append($dom);
+      empty($root)
+      view(signal, state).forEach(function(el) { $root.appendChild(el) });
     };
   };
   // initial render
-  var $dom = view(signal, state);
-  $root.empty().append($dom);
+  view(signal, state).forEach(function(el) { $root.appendChild(el) });
 }
 // ==================================== the component ====================================
 
@@ -48,16 +46,32 @@ function update(model, action) {
 }
 
 function view(signal, model) {
-  return $('<div/>').append(
-  $('<button>+</button>').on('click', signal(Inc)),
-  $('<span>'+model+'</span>'),
-  $('<button>-</button>').on('click', signal(Dec))
-)};
-
+  var div = document.createElement('div');
+  
+  return [
+    button('+', signal, Inc),
+    document.createTextNode(model),
+    button('-', signal, Dec)
+  ];
+}
+    
+function empty(node) { // http://stackoverflow.com/a/3955238/1148249
+  while (node.firstChild) {
+      node.removeChild(node.firstChild);
+  }
+}
+    
+function button(value, signal, action) { // http://stackoverflow.com/a/8650996/1148249
+  var button = document.createElement("input");
+    button.type = "button";
+    button.value = value;
+    button.onclick = signal(action);
+  return button
+}    
+    
 // ==================================== init app ====================================
     
- var initial = {model: 0, update, view};
- mount(initial, $('#app'))
-  </script>
+ mount({model: 0, update, view}, document.getElementById('app'));
+</script>
 </body>
 </html>
