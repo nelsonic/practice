@@ -15,11 +15,11 @@ function mount(muv, root) {
   var model = muv.model,
       update = muv.update,
       view = muv.view;
-  // initial state
-  var state = model;
-  // signal function takes action and returns callback
-  function signal(action) {
-    return function () {
+  
+  var state = model;               // initial state
+  
+  function signal(action) {        // signal function takes action
+    return function callback() {   // and returns callback
       // update state
       state = update(state, action);
       // rerender
@@ -47,20 +47,20 @@ function empty(node) { // http://stackoverflow.com/a/3955238/1148249
   }
 }
     
-function button(text, signal, action) { // http://stackoverflow.com/a/8650996/1148249
+function button(text, signal, action) {        // http://stackoverflow.com/a/8650996/1148249
   var button = document.createElement('button');
-    var text = document.createTextNode(text);   // Create a text node for the button text
+    var text = document.createTextNode(text);  // Create a text node for the button text
     button.appendChild(text);  
-    button.className = action;                  // add action as CSS class so can style
+    button.className = action;                 // add action as CSS class so can style
     button.onclick = signal(action);
   return button
 }
   
 function view(signal, model, root) {
   empty(root);
-  return [
-    button('+', signal, Inc),
-    document.createTextNode(model),
+  return [                                     // storing DOM nodes in an array
+    button('+', signal, Inc),                  // and then iterating to append them
+    document.createTextNode(model),            // avoids repetition.
     button('-', signal, Dec)
   ].forEach(function(el){ root.appendChild(el) })
 }
@@ -69,13 +69,15 @@ function view(signal, model, root) {
  mount({model: 0, update, view}, document.getElementById('app'));
 </script>
   
-<style>
+<style> /** CSS Styles are 100% optional here but they make it look *much* nicer **/
   body{
-    font-size: 2em;
+    font-family: Courier, "Lucida Console", monospace;
+    font-size: 5em;
+    text-align: center;
   }
   button {
-    color:white;border:2px solid; padding:3px;
-    margin: 1em;
+    font-size: 1em; color:white; border:2px solid; padding:0.5em; margin: 0.5em auto; 
+    display: block; width: 60%;
   }
   .inc {
     background-color:green; border-color: green;
