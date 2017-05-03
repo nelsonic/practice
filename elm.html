@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Elm Architecture Simple Counter</title>
+  <title>Elm Architecture in Pure JavaScript Simple Counter Counter</title>
   <link rel="shortcut icon" href="http://www.dwyl.io/images/favicon.ico" type="image/x-icon">
 </head>
 
@@ -11,29 +11,25 @@
   <div id="app"></div>
 <script>
 // ==================================== mount function ====================================
-
-function mount(muv, $root) {
+function mount(muv, root) {
   var model = muv.model,
       update = muv.update,
       view = muv.view;
-
   // initial state
   var state = model;
   // signal function takes action and returns callback
-  var signal = function signal(action) {
+  function signal(action) {
     return function () {
       // update state
       state = update(state, action);
       // rerender
-      empty($root)
-      view(signal, state).forEach(function(el) { $root.appendChild(el) });
+      view(signal, state, root);
     };
   };
   // initial render
-  view(signal, state).forEach(function(el) { $root.appendChild(el) });
+  view(signal, state, root);
 }
 // ==================================== the component ====================================
-
 var Inc = 'inc'
 var Dec = 'dec'
 
@@ -45,33 +41,48 @@ function update(model, action) {
   }
 }
 
-function view(signal, model) {
-  var div = document.createElement('div');
-  
-  return [
-    button('+', signal, Inc),
-    document.createTextNode(model),
-    button('-', signal, Dec)
-  ];
-}
-    
 function empty(node) { // http://stackoverflow.com/a/3955238/1148249
   while (node.firstChild) {
       node.removeChild(node.firstChild);
   }
 }
     
-function button(value, signal, action) { // http://stackoverflow.com/a/8650996/1148249
-  var button = document.createElement("input");
-    button.type = "button";
-    button.value = value;
+function button(text, signal, action) { // http://stackoverflow.com/a/8650996/1148249
+  var button = document.createElement('button');
+    var text = document.createTextNode(text);   // Create a text node for the button text
+    button.appendChild(text);  
+    button.className = action;                  // add action as CSS class so can style
     button.onclick = signal(action);
   return button
-}    
+}
+  
+function view(signal, model, root) {
+  empty(root);
+  return [
+    button('+', signal, Inc),
+    document.createTextNode(model),
+    button('-', signal, Dec)
+  ].forEach(function(el){ root.appendChild(el) })
+}
     
 // ==================================== init app ====================================
-    
  mount({model: 0, update, view}, document.getElementById('app'));
 </script>
+  
+<style>
+  body{
+    font-size: 2em;
+  }
+  button {
+    color:white;border:2px solid; padding:3px;
+    margin: 1em;
+  }
+  .inc {
+    background-color:green; border-color: green;
+  }
+  .dec {
+    background-color:red; border-color: red;
+  }
+</style>
 </body>
 </html>
