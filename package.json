@@ -9,15 +9,15 @@
   "scripts": {
     "test": "tape",
     "coverage": "istanbul cover qunit-istanbul.js",
-    "increment":"node tasks/increment.js",
-    "read":"node tasks/read.js",
-    "reset":"node tasks/reset.js",
-    "gogo":"npm run increment && npm run increment && npm run increment && npm run read && npm run reset",
+    "increment": "node tasks/increment.js",
+    "read": "node tasks/read.js",
+    "reset": "node tasks/reset.js",
+    "gogo": "npm run increment && npm run increment && npm run increment && npm run read && npm run reset",
     "node_modules": "node tasks/npm_install",
-    "zip":"node tasks/zip.js",
-    "unzip":"node tasks/unzip.js",
-    "deploy":"npm run node_modules && npm run zip"
-
+    "zip": "node tasks/zip.js",
+    "unzip": "node tasks/unzip.js",
+    "deploy": "npm run node_modules && npm run zip",
+    "start": "live-server --port=8000"
   },
   "repository": {
     "type": "git",
@@ -59,6 +59,7 @@
     "curlrequest": "^0.5.2",
     "file": "^0.2.2",
     "find": "^0.2.2",
+    "live-server": "^1.2.0",
     "mandrill-api": "^1.0.41",
     "nodemailer": "^1.3.4",
     "qunit-tap": "^1.5.0",
