@@ -1,0 +1,6 @@
+Hi, <%= name %>
+<%= if true do %>
+  A truthful statement
+<% else %>
+  A false statement
+<% end %>
