@@ -16,7 +16,8 @@ defmodule Example.Mixfile do
   def application do
     [
       extra_applications: [:logger],
-      mod: {Example, []}
+      mod: {Example, []},
+      env: [cowboy_port: 8080]
     ]
   end
 
