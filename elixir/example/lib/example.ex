@@ -1,39 +1,14 @@
 defmodule Example do
-  @moduledoc """
-  Documentation for Example.
-  """
+  use Application
+  require Logger
 
-  @doc """
-  Hello world.
+  def start(_type, _args) do
+    children = [
+      Plug.Adapters.Cowboy.child_spec(:http, Example.Router, [], port: 8080)
+    ]
 
-  ## Examples
+    Logger.info "Started application"
 
-      iex> Example.hello
-      :world
-
-  """
-  def hello do
-    :world
-  end
-
-
-  defstruct first: nil, last: nil
-
-  @type t(first, last) :: %Example{first: first, last: last}
-
-  @typedoc """
-    Type that represents Examples struct with :first
-    as integer and :last as integer.
-  """
-  @type t :: %Example{first: integer, last: integer}
-
-  @spec sum_times(integer, %Example{first: integer, last: integer}) :: integer
-  def sum_times(a, params) do
-    for i <- params.first..params.last do
-      i
-    end
-      |> Enum.map(fn el -> el * a end)
-      |> Enum.sum
-      |> round
+    Supervisor.start_link(children, strategy: :one_for_one)
   end
 end
