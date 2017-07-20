@@ -34,6 +34,7 @@ defmodule Example.Mixfile do
     [
       {:cowboy, "~> 1.1.2"},
       {:plug, "~> 1.3.4"},
+      {:dialyxir, "~> 0.4", only: [:dev]}
     ]
   end
 end
