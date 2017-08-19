@@ -8,8 +8,8 @@ defmodule KVServer.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      # Starts a worker by calling: KVServer.Worker.start_link(arg)
-      # {KVServer.Worker, arg},
+      {Task.Supervisor, name: KVServer.TaskSupervisor},
+      Supervisor.child_spec({Task, fn -> KVServer.accept(4040) end}, restart: :permanent)
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
