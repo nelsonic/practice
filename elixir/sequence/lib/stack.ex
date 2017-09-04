@@ -4,14 +4,19 @@ defmodule Totes.McStack do
   #####
   # External API  
 
+  # Totes.McStack.start_link ["hello", "world", :totes]
   def start_link(stack) do
     GenServer.start_link(__MODULE__, stack, name: __MODULE__)
   end
 
+  # Totes.McStack.pop
+  # "hello"
   def pop do
     GenServer.call __MODULE__, :pop
   end
 
+  # Totes.McStack.push "gringo"
+  # :ok
   def push(value) do
     GenServer.cast __MODULE__, {:push, value}
   end
