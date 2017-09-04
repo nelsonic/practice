@@ -1,18 +1,14 @@
 defmodule Sequence do
-  @moduledoc """
-  Documentation for Sequence.
-  """
+  use Application
 
-  @doc """
-  Hello world.
+  def start(_type, _args) do
+    import Supervisor.Spec, warn: false
 
-  ## Examples
+    children = [
+      worker(Sequence.Server, [123])
+    ]
 
-      iex> Sequence.hello
-      :world
-
-  """
-  def hello do
-    :world
+    opts = [strategy: :one_for_one, name: Sequence.Supervisor]
+    {:ok, _pid} = Supervisor.start_link(children, opts)
   end
 end
