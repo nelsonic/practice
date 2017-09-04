@@ -44,4 +44,9 @@ defmodule Totes.McStack do
     stack = [value | stack]
     { :noreply, stack }
   end
+  
+  def terminate(reason, status) do
+    IO.puts "Had to terminate because of: #{reason}, status: #{inspect status}"
+    :ok
+  end
 end
