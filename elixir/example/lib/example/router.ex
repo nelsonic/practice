@@ -12,5 +12,10 @@ defmodule Example.Router do
 
   get "/", do: send_resp(conn, 200, "Welcome")
   post "/upload", do: send_resp(conn, 201, "Uploaded\n")
-  match _, do: send_resp(conn, 404, "Oops!")
+  match _ do 
+    IO.inspect conn.path_info
+    IO.inspect Enum.join(conn.path_info, "/")
+    
+    send_resp(conn, 404, Enum.join(conn.path_info, "/"))
+  end
 end
