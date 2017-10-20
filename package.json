@@ -1,6 +1,6 @@
 {
   "name": "other",
-  "version": "1.0.4",
+  "version": "1.0.22",
   "description": "Other experiments in code for fun and practice.",
   "main": "index.js",
   "directories": {

@@ -2,7 +2,7 @@ defmodule Sequence.Server do
   use GenServer
 
   #####
-  # External API  
+  # External API
 
   def start_link(current_number) do
     GenServer.start_link(__MODULE__, current_number, name: __MODULE__)
