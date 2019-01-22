@@ -31,3 +31,4 @@ node_modules
 /data
 _data
 *.zip
+*.swp
