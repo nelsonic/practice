@@ -5,8 +5,9 @@ defmodule Rumbl.Accounts.Credential do
 
   schema "credentials" do
     field :email, :string
+    field :password, :string, virtual: true
     field :password_hash, :string
-    field :user_id, :id
+    belongs_to :user, Rumbl.Accounts.User
 
     timestamps()
   end
@@ -17,5 +18,6 @@ defmodule Rumbl.Accounts.Credential do
     |> cast(attrs, [:email, :password_hash])
     |> validate_required([:email, :password_hash])
     |> unique_constraint(:email)
+    |> put_pass_hash()
   end
 end
