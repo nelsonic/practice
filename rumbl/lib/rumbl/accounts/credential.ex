@@ -27,5 +27,6 @@ defmodule Rumbl.Accounts.Credential do
         put_change(changeset, :password_hash, Comeonin.Pbkdf2.hashpwsalt(pass))
       _ ->
         changeset
+    end
   end
 end
