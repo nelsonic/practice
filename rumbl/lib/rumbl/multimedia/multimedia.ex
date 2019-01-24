@@ -37,6 +37,9 @@ defmodule Rumbl.Multimedia do
   """
   def get_video!(id), do: Repo.get!(Video, id)
 
+
+  alias Rumbl.Accounts
+
   @doc """
   Creates a video.
 
@@ -49,9 +52,10 @@ defmodule Rumbl.Multimedia do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_video(attrs \\ %{}) do
+  def create_video(%Accounts.User{} = user, attrs \\ %{}) do
     %Video{}
     |> Video.changeset(attrs)
+    |> put_user(user)
     |> Repo.insert()
   end
 
@@ -89,16 +93,13 @@ defmodule Rumbl.Multimedia do
     Repo.delete(video)
   end
 
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking video changes.
+  def change_video(%Accounts.User{} = user, %Video{} = video) do
+    video
+    |> Video.changeset(%{})
+    |> put_user(user)
+  end
 
-  ## Examples
-
-      iex> change_video(video)
-      %Ecto.Changeset{source: %Video{}}
-
-  """
-  def change_video(%Video{} = video) do
-    Video.changeset(video, %{})
+  defp put_user(changeset, user) do
+    Ecto.Changeset.put_assoc(changeset, :user, user)
   end
 end
