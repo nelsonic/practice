@@ -26,19 +26,19 @@ defmodule RumblWeb.VideoController do
     end
   end
 
-  def edit(conn, %{"id" => id}) do
-    video = Multimedia.get_video!(id)
-    changeset = Multimedia.change_video(conn.assigns.current_user, video) 
-    render(conn, "edit.html", video: video, changeset: changeset)
-  end
-
   def show(conn, %{"id" => id}, current_user) do
     video = Multimedia.get_user_video!(current_user, id) 
     render(conn, "show.html", video: video)
   end
 
-  def update(conn, %{"id" => id, "video" => video_params}) do
-    video = Multimedia.get_video!(id)
+  def edit(conn, %{"id" => id}, current_user) do
+    video = Multimedia.get_user_video!(current_user, id) 
+    changeset = Multimedia.change_video(current_user, video)
+    render(conn, "edit.html", video: video, changeset: changeset)
+  end
+
+  def update(conn, %{"id" => id, "video" => video_params}, current_user) do
+    video = Multimedia.get_user_video!(current_user, id) 
 
     case Multimedia.update_video(video, video_params) do
       {:ok, video} ->
