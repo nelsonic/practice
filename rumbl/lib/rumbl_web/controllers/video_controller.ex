@@ -9,13 +9,13 @@ defmodule RumblWeb.VideoController do
     render(conn, "index.html", videos: videos)
   end
 
-  def new(conn, _params) do
-    changeset = Multimedia.change_video(conn.assigns.current_user, %Video{}) 
+  def new(conn, _params, current_user) do
+    changeset = Multimedia.change_video(current_user, %Video{})
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"video" => video_params}) do
-    case Multimedia.create_video(conn.assigns.current_user, video_params) do 
+  def create(conn, %{"video" => video_params}, current_user) do
+    case Multimedia.create_video(current_user, video_params) do
       {:ok, video} ->
         conn
         |> put_flash(:info, "Video created successfully.")
