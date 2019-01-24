@@ -102,4 +102,21 @@ defmodule Rumbl.Multimedia do
   defp put_user(changeset, user) do
     Ecto.Changeset.put_assoc(changeset, :user, user)
   end
+
+  def list_user_videos(%Accounts.User{} = user) do
+    Video
+    |> user_videos_query(user)
+    |> Repo.all()
+  end
+
+  def get_user_video!(%Accounts.User{} = user, id) do
+    from(v in Video, where: v.id == ^id)
+    |> user_videos_query(user)
+    |> Repo.one!()
+  end
+
+  defp user_videos_query(query, %Accounts.User{id: user_id}) do
+    from(v in query, where: v.user_id == ^user_id)
+  end
+  
 end
