@@ -60,4 +60,9 @@ defmodule RumblWeb.VideoController do
     |> put_flash(:info, "Video deleted successfully.")
     |> redirect(to: Routes.video_path(conn, :index))
   end
+
+  def action(conn, _) do
+    args = [conn, conn.params, conn.assigns.current_user] 
+    apply(__MODULE__, action_name(conn), args)
+  end
 end
