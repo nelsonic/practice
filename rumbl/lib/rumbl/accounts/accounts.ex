@@ -147,14 +147,14 @@ defmodule Rumbl.Accounts do
     user = get_user_by_email(email)
 
     cond do
-      user && Comeonin.Pbkdf2.checkpw(given_pass, user.credential.password_hash) ->
+      user && Pbkdf2.verify_pass(given_pass, user.credential.password_hash) ->
         {:ok, user}
 
       user ->
         {:error, :unauthorized}
 
       true ->
-        Comeonin.Bcrypt.dummy_checkpw()
+        Pbkdf2.no_user_verify()
         {:error, :not_found}
     end
   end
