@@ -21,22 +21,25 @@ setTimeout(() => {
   }, 2000);
 }, 2000);
 
+
+
 // Second Part:
 
 if (document.querySelectorAll('[ class*="octicon-git-merge" ]').length > 0 
       || document.querySelectorAll('[ class*="octicon-git-pull-request-closed" ]').length > 0) {
   setTimeout(() => {
-    [...document.querySelectorAll('[class*="timeline-comment-actions"]')].at(-1).click();
+    [...document.querySelectorAll('[class*="timeline-comment-action"]')].at(-1).click()
     setTimeout(() => {
       [...document.querySelectorAll('[class*="js-comment-edit-button"]')].at(-1).click();
-      document.querySelectorAll('[ class*="CommentBox-input" ]')[0].value = "@dependabot thanks🤖📕👌";
-      setTimeout(() => { document.querySelector('button[aria-label*="Update comment"]')[0].click(); }, 300);
-    }, 200);
+      document.querySelectorAll('[ class*="CommentBox-input" ]')[0].value = "Thanks @dependabot 🤖📕👌";
+      document.querySelectorAll('[ class*="js-comment-cancel-button"]')[0]
+      setTimeout(() => { document.querySelectorAll('[ class*="js-comment-cancel-button"]')[0].nextElementSibling.click() }, 300);
+    }, 500);
   }, 200);
 } else { // merge:
   setTimeout(() => {
     document.querySelector('[data-variant="primary"]').click()
     setTimeout(() => { document.querySelectorAll(".flex-self-stretch")[0].click(); }, 200);
-    setTimeout(() => { document.querySelectorAll('[aria-label="Done"]')[0].click(); }, 1000);
   }, 500);
 }
+setTimeout(() => { document.querySelectorAll('[aria-label="Done"]')[0].click(); }, 2000);
